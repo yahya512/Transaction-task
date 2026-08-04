@@ -19,7 +19,7 @@ class TransactionListRepositoryImpl @Inject constructor(private val apiServices:
 
             is ApiResultStatus.Success -> {
                 val listOfTransactionDomain =
-                    TransactionListDomainMapper.mapListToDomain(apiStatus.data)
+                    TransactionListDomainMapper.mapListToDomain(apiStatus.data?.transactions)
                 ApiResultStatus.Success(listOfTransactionDomain)
             }
         }
