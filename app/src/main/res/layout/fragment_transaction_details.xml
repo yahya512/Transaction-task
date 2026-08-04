@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F6F6"
+    tools:context=".transaction_details.presentation.ui.TransactionDetailsFragment">
+
+
+    <TextView
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="15dp"
+        app:drawableEndCompat="@drawable/baseline_arrow_forward_ios_24"
+        app:drawableStartCompat="@drawable/baseline_ios_share_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/successful_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/successful_status"
+        app:layout_constraintTop_toBottomOf="@+id/backButton" />
+
+    <TextView
+
+        android:id="@+id/successful_payment_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="4dp"
+        android:paddingHorizontal="15dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/successful_imageView"
+        tools:text="successful payment" />
+
+    <TextView
+        android:id="@+id/payment_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/successful_payment_textView"
+        tools:text="500 EGP" />
+
+    <TextView
+        android:id="@+id/details_of_operation_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:padding="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_transaction_details_operations"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_price"
+        tools:text="Details of operation" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_transaction_details_operations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rounded_corners"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/details_of_operation_textView"
+        tools:itemCount="4"
+        tools:listitem="@layout/transaction_details_item" />
+
+    <TextView
+        android:id="@+id/payment_details_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+
+        android:padding="4dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerview_transaction_details_operations"
+        tools:text="payment Details" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_transaction_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+
+        android:background="@drawable/rounded_corners"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_details_textView"
+        tools:itemCount="4"
+        tools:listitem="@layout/transaction_details_item" />
+
+    <View
+        android:id="@+id/container_problem_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/rounded_corners"
+        app:layout_constraintBottom_toTopOf="@id/back_to_home_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recyclerview_transaction_details" />
+
+    <TextView
+        android:id="@+id/problem_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:paddingStart="16dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/container_problem_text"
+        app:layout_constraintStart_toStartOf="@id/container_problem_text"
+        app:layout_constraintTop_toTopOf="@id/container_problem_text"
+        tools:text="If you are having a problem" />
+
+
+    <TextView
+        android:id="@+id/support_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:drawableEnd="@drawable/baseline_headphones_24"
+        android:drawablePadding="4dp"
+        android:paddingEnd="4dp"
+        android:textColor="#00A970"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/container_problem_text"
+        app:layout_constraintTop_toTopOf="@id/problem_text_view"
+        tools:text="support" />
+
+    <Button
+        android:id="@+id/back_to_home_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@drawable/button_shape"
+        android:paddingHorizontal="132.5dp"
+        android:paddingVertical="16dp"
+        android:text="Back to Home"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_problem_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
