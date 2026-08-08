@@ -1,4 +1,4 @@
-package com.example.e_commerceapp.transaction_list.presentation.adapter.viewholders
+package com.example.e_commerceapp.transaction_list.presentation.models
 
 enum class OperationStatus(val status: String) {
     PENDING("Pending"),

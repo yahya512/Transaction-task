@@ -1,17 +1,18 @@
 package com.example.e_commerceapp.transaction_list.presentation.adapter.viewholders
 
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.e_commerceapp.R
 import com.example.e_commerceapp.databinding.TransactionItemBinding
+import com.example.e_commerceapp.transaction_list.presentation.models.OperationStatus
 import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
 import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
 
-class TransactionViewHolder(val binding: TransactionItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class TransactionViewHolder(
+    val binding: TransactionItemBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindTransaction(transactionItem: TransactionUiModule, transaction: TransactionOnClick) {
         binding.apply {
@@ -23,9 +24,9 @@ class TransactionViewHolder(val binding: TransactionItemBinding) :
                 .load(transactionItem.icon)
                 .placeholder(R.drawable.vector19)
                 .into(imageViewCard)
-            /* cardItem.setOnClickListener {
-                 transaction.onClick(transactionItem)
-             }*/
+            cardItem.setOnClickListener {
+                transaction.onClick(transactionItem)
+            }
 
             val backGroundColor = when (transactionItem.status_label) {
                 OperationStatus.SUCCESS.status -> R.color.light_green
@@ -51,7 +52,7 @@ class TransactionViewHolder(val binding: TransactionItemBinding) :
                     R.color.orange
                 }
             }
-            Log.d("color2", transactionItem.status_label ?: "No Color")
+
             transactionStatus.setTextColor(
                 ContextCompat.getColor(itemView.context, textColor)
             )

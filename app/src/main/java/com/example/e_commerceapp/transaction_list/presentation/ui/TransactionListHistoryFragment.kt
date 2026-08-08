@@ -24,7 +24,9 @@ import kotlinx.coroutines.launch
 class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
     private lateinit var binding: FragmentTransactionListHistoryBinding
     private val viewModel: TransactionListViewModel by viewModels()
-    private lateinit var adapter: TransactionListAdapter
+    private val adapter by lazy {
+        TransactionListAdapter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -85,10 +87,8 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
     }
 
     private fun showTransactions(transactions: List<TransactionUiModule>) {
-        adapter = TransactionListAdapter(this)
         binding.transactionListRecView.adapter = adapter
         adapter.submitList(transactions)
-
     }
 
     override fun onClick(item: TransactionUiModule) {
