@@ -10,8 +10,9 @@ import com.example.e_commerceapp.databinding.TransactionItemBinding
 import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
 import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
 
-class TransactionViewHolder(val binding: TransactionItemBinding) :
-    RecyclerView.ViewHolder(binding.root) {
+class TransactionViewHolder(
+    val binding: TransactionItemBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bindTransaction(transactionItem: TransactionUiModule, transaction: TransactionOnClick) {
         binding.apply {
@@ -23,9 +24,9 @@ class TransactionViewHolder(val binding: TransactionItemBinding) :
                 .load(transactionItem.icon)
                 .placeholder(R.drawable.vector19)
                 .into(imageViewCard)
-            /* cardItem.setOnClickListener {
-                 transaction.onClick(transactionItem)
-             }*/
+            cardItem.setOnClickListener {
+                transaction.onClick(transactionItem)
+            }
 
             val backGroundColor = when (transactionItem.status_label) {
                 OperationStatus.SUCCESS.status -> R.color.light_green

@@ -1,6 +1,10 @@
 package com.example.e_commerceapp.di
 
 import com.example.e_commerceapp.BuildConfig
+import com.example.e_commerceapp.transaction_details.data.remote.TransactionDetailsApi
+import com.example.e_commerceapp.transaction_details.data.repository.TransactionDetailsRepositoryImpl
+import com.example.e_commerceapp.transaction_details.domain.repository.TransactionDetailsRepository
+import com.example.e_commerceapp.transaction_details.domain.usecase.GetTransactionDetailsUseCase
 import com.example.e_commerceapp.transaction_list.data.remote.TransactionListApi
 import com.example.e_commerceapp.transaction_list.data.repository.TransactionListRepositoryImpl
 import com.example.e_commerceapp.transaction_list.domain.repository.TransactionListRepository
@@ -80,5 +84,23 @@ object MyAppModule {
     @Provides
     fun provideTransactionListRepo(repository: TransactionListRepository): GetTransactionListUseCase {
         return GetTransactionListUseCase(repository)
+    }
+
+    //provide TransactionDetailsRepoFor UseCase
+    @Provides
+    fun provideTransactionDetailsRepo(repository: TransactionDetailsRepository): GetTransactionDetailsUseCase {
+        return GetTransactionDetailsUseCase(repository)
+    }
+
+    // provide Api instance for TransactionDetailsAPI
+    @Provides
+    fun provideInstanceTransactionDetailsApi(retrofit: Retrofit): TransactionDetailsApi {
+        return retrofit.create<TransactionDetailsApi>(TransactionDetailsApi::class.java)
+    }
+
+    //provide Api Service For Transaction Details Repo
+    @Provides
+    fun provideApiTransactionDetailsRepo(apiServices: TransactionDetailsApi): TransactionDetailsRepository {
+        return TransactionDetailsRepositoryImpl(apiServices)
     }
 }
