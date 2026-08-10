@@ -52,15 +52,7 @@ class TransactionDetailsFragment : Fragment() {
                     when (it) {
                         UiDetailsState.Loading -> {
                             binding.apply {
-                                successfulImageView.isVisible = false
-                                successfulPaymentTextView.isVisible = false
-                                paymentPrice.isVisible = false
-                                recyclerviewTransactionDetailsOperations.isVisible = false
-                                containerProblemText.isVisible = false
-                                backToHomeButton.isVisible = false
-                                errorMessageTextView.isVisible = false
-                                problemTextView.isVisible = false
-                                supportRequest.isVisible = false
+                                groupOfSuccessfulState.isVisible = false
                                 backButton.setOnClickListener {
                                     navigateToHome()
                                 }
@@ -70,14 +62,7 @@ class TransactionDetailsFragment : Fragment() {
                         is UiDetailsState.Error -> {
                             binding.apply {
                                 progressBar.isVisible = false
-                                successfulImageView.isVisible = false
-                                successfulPaymentTextView.isVisible = false
-                                paymentPrice.isVisible = false
-                                recyclerviewTransactionDetailsOperations.isVisible = false
-                                containerProblemText.isVisible = false
-                                problemTextView.isVisible = false
-                                supportRequest.isVisible = false
-                                backToHomeButton.isVisible = false
+                                groupOfSuccessfulState.isVisible = false
                                 errorMessageTextView.isVisible = true
                                 errorMessageTextView.text = it.errorMessage
                                 backButton.setOnClickListener {
@@ -90,23 +75,15 @@ class TransactionDetailsFragment : Fragment() {
                             binding.apply {
                                 progressBar.isVisible = false
                                 errorMessageTextView.isVisible = false
-                                successfulImageView.isVisible = true
-                                successfulPaymentTextView.isVisible = true
+                                groupOfSuccessfulState.isVisible = true
                                 successfulPaymentTextView.text = it.data.status_title
-                                paymentPrice.isVisible = true
                                 paymentPrice.text = it.data.amount_label
-                                recyclerviewTransactionDetailsOperations.isVisible = true
                                 showTransactionDetails(it.data.sections ?: emptyList())
-                                containerProblemText.isVisible = true
-                                problemTextView.isVisible = true
-                                supportRequest.isVisible = true
                                 problemTextView.text = it.data.support?.text
                                 supportRequest.text = it.data.support?.action_label
-                                backToHomeButton.isVisible = true
                                 backToHomeButton.setOnClickListener {
                                     navigateToHome()
                                 }
-                                backButton.isVisible = true
                                 backButton.setOnClickListener {
                                     navigateToHome()
                                 }

@@ -1,5 +1,7 @@
 package com.example.e_commerceapp.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.e_commerceapp.BuildConfig
 import com.example.e_commerceapp.transaction_details.data.remote.TransactionDetailsApi
 import com.example.e_commerceapp.transaction_details.data.repository.TransactionDetailsRepositoryImpl
@@ -12,6 +14,7 @@ import com.example.e_commerceapp.transaction_list.domain.usecase.GetTransactionL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -25,6 +28,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object MyAppModule {
 
+
     // provide LoggingInterceptor
     @Provides
     fun provideOkHttpLogging(): HttpLoggingInterceptor {
@@ -35,11 +39,23 @@ object MyAppModule {
         return logging
     }
 
+    @Provides
+    @Singleton
+    fun provideChuckerInterceptor(@ApplicationContext context: Context): ChuckerInterceptor {
+        return ChuckerInterceptor.Builder(context).build()
+    }
+
+
     //provide OkHttpClient
     @Provides
-    fun provideOkHttpClient(logging: HttpLoggingInterceptor): OkHttpClient {
+    @Singleton
+    fun provideOkHttpClient(
+        logging: HttpLoggingInterceptor,
+        chuckerInterceptor: ChuckerInterceptor
+    ): OkHttpClient {
         val client =
             OkHttpClient.Builder()
+                .addInterceptor(chuckerInterceptor)
                 .addInterceptor(logging)
                 .addInterceptor { chain ->
                     val request =
