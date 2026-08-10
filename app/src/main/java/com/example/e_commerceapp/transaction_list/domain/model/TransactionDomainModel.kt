@@ -8,4 +8,5 @@ data class TransactionDomainModel(
     val amount_label: String?,
     val status_label: String?,
     val data_label: String?,
+    val type: String?
 )

@@ -13,8 +13,8 @@ object TransactionDomainMapper {
             icon = data?.icon,
             amount_label = data?.amount_label,
             status_label = data?.status_label,
-            data_label = data?.date_label
+            data_label = data?.date_label,
+            type = data?.type
         )
-
     }
 }
