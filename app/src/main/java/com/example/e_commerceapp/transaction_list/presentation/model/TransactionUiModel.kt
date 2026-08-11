@@ -1,6 +1,6 @@
-package com.example.e_commerceapp.transaction_list.presentation.models
+package com.example.e_commerceapp.transaction_list.presentation.model
 
-data class TransactionUiModule(
+data class TransactionUiModel(
     val id: Int?,
     val reference: String?,
     val title: String?,

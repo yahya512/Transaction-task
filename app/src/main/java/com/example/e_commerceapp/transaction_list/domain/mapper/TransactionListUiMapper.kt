@@ -1,12 +1,12 @@
 package com.example.e_commerceapp.transaction_list.domain.mapper
 
 import com.example.e_commerceapp.transaction_list.domain.model.TransactionDomainModel
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
 
 object TransactionListUiMapper {
-    fun matToDomain(data: List<TransactionDomainModel>?): List<TransactionUiModule>? {
+    fun matToUi(data: List<TransactionDomainModel>?): List<TransactionUiModel> {
         return data?.let {
             data.map { TransactionUiMapper.mapToUi(it) }
-        }
+        } ?: emptyList()
     }
 }

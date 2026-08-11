@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.e_commerceapp.R
 import com.example.e_commerceapp.databinding.TransactionItemBinding
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionOnClick
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
 
 class TransactionViewHolder(
     val binding: TransactionItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bindTransaction(transactionItem: TransactionUiModule, transaction: TransactionOnClick) {
+    fun bindTransaction(transactionItem: TransactionUiModel, transaction: TransactionOnClick) {
         binding.apply {
             phoneNumber.text = transactionItem.reference
             nameOfTransaction.text = transactionItem.title
