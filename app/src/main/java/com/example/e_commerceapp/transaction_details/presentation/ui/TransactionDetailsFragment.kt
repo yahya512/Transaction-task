@@ -41,7 +41,7 @@ class TransactionDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.getTransactionById(args.id)
         getTransactionDetailsById()
-
+        setUpListeners()
     }
 
 
@@ -53,9 +53,6 @@ class TransactionDetailsFragment : Fragment() {
                         UiDetailsState.Loading -> {
                             binding.apply {
                                 groupOfSuccessfulState.isVisible = false
-                                backButton.setOnClickListener {
-                                    navigateToHome()
-                                }
                             }
                         }
 
@@ -65,9 +62,6 @@ class TransactionDetailsFragment : Fragment() {
                                 groupOfSuccessfulState.isVisible = false
                                 errorMessageTextView.isVisible = true
                                 errorMessageTextView.text = it.errorMessage
-                                backButton.setOnClickListener {
-                                    navigateToHome()
-                                }
                             }
                         }
 
@@ -81,12 +75,6 @@ class TransactionDetailsFragment : Fragment() {
                                 showTransactionDetails(it.data.sections ?: emptyList())
                                 problemTextView.text = it.data.support?.text
                                 supportRequest.text = it.data.support?.action_label
-                                backToHomeButton.setOnClickListener {
-                                    navigateToHome()
-                                }
-                                backButton.setOnClickListener {
-                                    navigateToHome()
-                                }
                                 shareButton.isVisible = it.data.shareable
                             }
                         }
@@ -103,6 +91,16 @@ class TransactionDetailsFragment : Fragment() {
             recyclerviewTransactionDetailsOperations.adapter = adapter
         }
         adapter.submitList(transaction)
+    }
+
+    private fun setUpListeners() {
+        binding.backButton.setOnClickListener {
+            navigateToHome()
+        }
+        binding.backToHomeButton.setOnClickListener {
+            navigateToHome()
+        }
+        binding.shareButton.setOnClickListener { }
     }
 
     private fun navigateToHome() {
