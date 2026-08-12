@@ -6,15 +6,15 @@ import com.example.e_commerceapp.transaction_details.domain.model.TransactionDet
 import com.example.e_commerceapp.transaction_details.presentation.model.TransactionDetailsUiModel
 
 object TransactionDetailsUiMapper {
-    fun mapToUi(data: TransactionDetailsDomainModel?): TransactionDetailsUiModel {
+    fun mapToUi(data: TransactionDetailsDomainModel): TransactionDetailsUiModel {
         return TransactionDetailsUiModel(
-            id = data?.id,
-            status_label = data?.statusLabel,
-            amount_label = data?.amountLabel,
-            status_title = data?.statusTitle,
-            shareable = data?.shareable ?: false,
-            support = SupportUiMapper.mapToUi(data?.support),
-            sections = SectionListUiMapper.mapListToUi(data?.sections)
+            id = data.id,
+            status_label = data.statusLabel,
+            amount_label = data.amountLabel,
+            status_title = data.statusTitle,
+            shareable = data.shareable,
+            support = SupportUiMapper.mapToUi(data.support),
+            sections = SectionListUiMapper.mapListToUi(data.sections)
         )
     }
 }
