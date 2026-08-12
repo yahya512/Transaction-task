@@ -11,9 +11,10 @@ object TransactionDomainMapper {
             reference = data?.reference,
             title = data?.title,
             icon = data?.icon,
-            amount_label = data?.amount_label,
-            status_label = data?.status_label,
-            data_label = data?.date_label,
+            amountLabel = data?.amountLabel,
+            status = data?.status,
+            statusLabel = data?.statusLabel,
+            dataLabel = data?.dateLabel,
             type = data?.type
         )
     }
