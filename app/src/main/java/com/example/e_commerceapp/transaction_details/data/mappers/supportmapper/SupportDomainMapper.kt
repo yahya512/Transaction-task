@@ -6,8 +6,8 @@ import com.example.e_commerceapp.transaction_details.domain.model.SupportDomainM
 object SupportDomainMapper {
     fun mapToDomain(data: SupportDto): SupportDomainModel {
         return SupportDomainModel(
-            text = data.text ?: "",
-            actionLabel = data.actionLabel ?: ""
+            text = data.text,
+            actionLabel = data.actionLabel
         )
     }
 }
