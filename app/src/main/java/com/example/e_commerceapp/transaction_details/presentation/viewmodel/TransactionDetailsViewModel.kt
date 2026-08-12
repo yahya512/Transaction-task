@@ -14,8 +14,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TransactionDetailsViewModel @Inject constructor(private val getTransactionDetailsUseCase: GetTransactionDetailsUseCase) :
-    ViewModel() {
+class TransactionDetailsViewModel
+@Inject constructor(
+    private val getTransactionDetailsUseCase: GetTransactionDetailsUseCase
+) : ViewModel() {
 
     private val _stateDetailsFlow = MutableStateFlow<UiDetailsState>(UiDetailsState.Loading)
     val stateDetailsFlow: StateFlow<UiDetailsState> = _stateDetailsFlow.asStateFlow()
