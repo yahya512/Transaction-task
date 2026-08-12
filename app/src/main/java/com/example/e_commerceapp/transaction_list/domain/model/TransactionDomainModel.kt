@@ -5,8 +5,9 @@ data class TransactionDomainModel(
     val reference: String?,
     val title: String?,
     val icon: String?,
-    val amount_label: String?,
-    val status_label: String?,
-    val data_label: String?,
+    val amountLabel: String?,
+    val status: String?,
+    val statusLabel: String?,
+    val dataLabel: String?,
     val type: String?
 )
