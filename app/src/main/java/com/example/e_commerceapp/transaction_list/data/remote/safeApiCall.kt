@@ -12,7 +12,7 @@ suspend fun <T> safeApiCall(apiCall: suspend () -> BaseResponse<T>): ApiResultSt
             ApiResultStatus.Success(response.data)
         } else {
             ApiResultStatus.Error(
-                response.message ?: "Unknown Error"
+                response.message ?: "The Data Doesn't receive"
             ) // catch error message from backend
         }
     } catch (e: IOException) {

@@ -11,8 +11,8 @@ import javax.inject.Inject
 class TransactionListRepositoryImpl @Inject constructor(private val apiServices: TransactionListApi) :
     TransactionListRepository {
     override suspend fun getTransactionList(): ApiResultStatus<List<TransactionDomainModel>?> {
-        val apiStatus = safeApiCall { apiServices.getTransactionList() }
-        return when (apiStatus) {
+
+        return when (val apiStatus = safeApiCall { apiServices.getTransactionList() }) {
             is ApiResultStatus.Error -> {
                 ApiResultStatus.Error(apiStatus.errorMessage)
             }
@@ -22,6 +22,8 @@ class TransactionListRepositoryImpl @Inject constructor(private val apiServices:
                     TransactionListDomainMapper.mapListToDomain(apiStatus.data?.transactions)
                 ApiResultStatus.Success(listOfTransactionDomain)
             }
+
+            else -> {}
         }
     }
 }
