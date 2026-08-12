@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.e_commerceapp.R
 import com.example.e_commerceapp.databinding.TransactionItemBinding
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionOnClick
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
 
 class TransactionViewHolder(
     val binding: TransactionItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bindTransaction(transactionItem: TransactionUiModule, transaction: TransactionOnClick) {
+    fun bindTransaction(transactionItem: TransactionUiModel, transaction: TransactionOnClick) {
         binding.apply {
             phoneNumber.text = transactionItem.reference
             nameOfTransaction.text = transactionItem.title
-            costOfTransaction.text = transactionItem.amount_label
-            transactionStatus.text = transactionItem.status_label
+            costOfTransaction.text = transactionItem.amountLabel
+            transactionStatus.text = transactionItem.statusLabel
             Glide.with(itemView.context)
                 .load(transactionItem.icon)
                 .placeholder(R.drawable.vector19)
@@ -28,7 +28,7 @@ class TransactionViewHolder(
                 transaction.onClick(transactionItem)
             }
 
-            val backGroundColor = when (transactionItem.status_label) {
+            val backGroundColor = when (transactionItem.status) {
                 OperationStatus.SUCCESS.status -> R.color.light_green
                 OperationStatus.PENDING.status -> R.color.light_orange
                 OperationStatus.FAILED.status -> R.color.light_red
@@ -43,7 +43,7 @@ class TransactionViewHolder(
             drawable.setColor(
                 ContextCompat.getColor(itemView.context, backGroundColor)
             )
-            val textColor = when (transactionItem.status_label) {
+            val textColor = when (transactionItem.status) {
                 OperationStatus.SUCCESS.status -> R.color.green
                 OperationStatus.PENDING.status -> R.color.orange
                 OperationStatus.FAILED.status -> R.color.red
@@ -52,7 +52,7 @@ class TransactionViewHolder(
                     R.color.orange
                 }
             }
-            Log.d("color2", transactionItem.status_label ?: "No Color")
+            Log.d("color2", transactionItem.statusLabel ?: "No Color")
             transactionStatus.setTextColor(
                 ContextCompat.getColor(itemView.context, textColor)
             )

@@ -9,16 +9,16 @@ import com.example.e_commerceapp.databinding.DateTransactionItemBinding
 import com.example.e_commerceapp.databinding.TransactionItemBinding
 import com.example.e_commerceapp.transaction_list.presentation.adapter.viewholders.DateHeader
 import com.example.e_commerceapp.transaction_list.presentation.adapter.viewholders.TransactionViewHolder
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
-import com.example.e_commerceapp.transaction_list.presentation.models.ViewHolderType
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionOnClick
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
+import com.example.e_commerceapp.transaction_list.presentation.model.ViewHolderType
 
 const val HEADER = 0
 const val TRANSACTION = 1
 
 class TransactionListAdapter(
     val listener: TransactionOnClick
-) : ListAdapter<TransactionUiModule, RecyclerView.ViewHolder>(TransactionsDiffUtil()) {
+) : ListAdapter<TransactionUiModel, RecyclerView.ViewHolder>(TransactionsDiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
         return if (getItem(position).type == ViewHolderType.TRANSACTIONS) {
