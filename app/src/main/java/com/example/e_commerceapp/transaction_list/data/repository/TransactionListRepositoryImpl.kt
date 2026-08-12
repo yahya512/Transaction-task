@@ -14,13 +14,13 @@ class TransactionListRepositoryImpl @Inject constructor(private val apiServices:
 
         return when (val apiStatus = safeApiCall { apiServices.getTransactionList() }) {
             is ApiResultStatus.Error -> {
-                ApiResultStatus.Error(apiStatus.errorMessage)
+                apiStatus.errorMessage
             }
 
             is ApiResultStatus.Success -> {
                 val listOfTransactionDomain =
                     TransactionListDomainMapper.mapListToDomain(apiStatus.data?.transactions)
-                ApiResultStatus.Success(listOfTransactionDomain)
+                listOfTransactionDomain
             }
 
             else -> {}

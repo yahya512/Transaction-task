@@ -5,16 +5,16 @@ import com.example.e_commerceapp.transaction_list.domain.model.TransactionDomain
 
 object TransactionDomainMapper {
 
-    fun mapToDomain(data: TransactionDto?): TransactionDomainModel {
+    fun mapToDomain(data: TransactionDto): TransactionDomainModel {
         return TransactionDomainModel(
-            id = data?.id,
-            reference = data?.reference,
-            title = data?.title,
-            icon = data?.icon,
-            amount_label = data?.amount_label,
-            status_label = data?.status_label,
-            data_label = data?.date_label,
-            type = data?.type
+            id = data.id,
+            reference = data.reference,
+            title = data.title,
+            icon = data.icon,
+            amount_label = data.amountLabel,
+            status_label = data.statusLabel,
+            data_label = data.dateLabel,
+            type = data.type
         )
     }
 }
