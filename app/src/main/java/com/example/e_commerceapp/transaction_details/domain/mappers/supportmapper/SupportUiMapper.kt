@@ -6,7 +6,7 @@ import com.example.e_commerceapp.transaction_details.presentation.model.SupportU
 object SupportUiMapper {
     fun mapToUi(data: SupportDomainModel?): SupportUiModel {
         return SupportUiModel(
-            text = data?.text, action_label = data?.action_label
+            text = data?.text, action_label = data?.actionLabel
         )
     }
 }
