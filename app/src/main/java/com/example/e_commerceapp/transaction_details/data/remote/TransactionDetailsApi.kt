@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface TransactionDetailsApi {
-    @GET("test/transactions/{id}")
+    @GET(GET_TRANSACTION_DETAILS_URL)
     suspend fun getTransactionDetailsByID(
         @Path("id") id: Int
     ): BaseResponse<TransactionDetailsResponse?>
