@@ -61,12 +61,12 @@
         android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/transaction_status"
-        app:layout_constraintStart_toStartOf="@id/transaction_status"
+        app:layout_constraintEnd_toEndOf="@id/text_transactionStatus"
+        app:layout_constraintStart_toStartOf="@id/text_transactionStatus"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/transaction_status"
+        android:id="@+id/text_transactionStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
@@ -93,6 +93,6 @@
         android:background="#F6F6F6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transaction_status" />
+        app:layout_constraintTop_toBottomOf="@+id/text_transactionStatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
