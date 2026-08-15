@@ -1,7 +1,6 @@
 package com.example.e_commerceapp.transaction_list.presentation.adapter.viewholders
 
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,7 +18,7 @@ class TransactionViewHolder(
             phoneNumber.text = transactionItem.reference
             nameOfTransaction.text = transactionItem.title
             costOfTransaction.text = transactionItem.amountLabel
-            transactionStatus.text = transactionItem.statusLabel
+            textTransactionStatus.text = transactionItem.statusLabel
             Glide.with(itemView.context)
                 .load(transactionItem.icon)
                 .placeholder(R.drawable.vector19)
@@ -39,7 +38,7 @@ class TransactionViewHolder(
 
             }
 
-            val drawable = transactionStatus.background.mutate() as GradientDrawable
+            val drawable = textTransactionStatus.background.mutate() as GradientDrawable
             drawable.setColor(
                 ContextCompat.getColor(itemView.context, backGroundColor)
             )
@@ -52,8 +51,8 @@ class TransactionViewHolder(
                     R.color.orange
                 }
             }
-            Log.d("color2", transactionItem.statusLabel ?: "No Color")
-            transactionStatus.setTextColor(
+
+            textTransactionStatus.setTextColor(
                 ContextCompat.getColor(itemView.context, textColor)
             )
 

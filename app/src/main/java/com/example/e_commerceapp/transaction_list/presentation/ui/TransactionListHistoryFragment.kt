@@ -1,7 +1,6 @@
 package com.example.e_commerceapp.transaction_list.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,14 +70,14 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
                             }
 
                             is UiState.Success -> {
-                                Log.d("traceState", "call success")
+
                                 binding.apply {
                                     swipeToRefresh.isRefreshing = false
                                     progressPar.isVisible = false
                                     transactionListRecView.isVisible = true
                                     errorMessageTextView.isVisible = false
                                 }
-                                showTransactions(it.transactions ?: emptyList())
+                                showTransactionsList(it.transactions ?: emptyList())
                             }
 
                             is UiState.Error -> {
@@ -92,7 +91,6 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
                             }
 
                             is UiState.LoadingPagination -> {
-                                Log.d("traceState", "call loading pagination")
                                 binding.apply {
                                     swipeToRefresh.isRefreshing = false
                                     progressPar.isVisible = false
@@ -108,18 +106,16 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
     }
 
 
-    private fun showTransactions(transactions: List<TransactionUiModel>) {
+    private fun showTransactionsList(transactions: List<TransactionUiModel>) {
         adapter.submitList(transactions)
     }
 
     override fun onClick(item: TransactionUiModel) {
-        item.id?.let {
-            val action =
-                TransactionListHistoryFragmentDirections.actionTransactionListHistoryFragmentToTransactionDetailsFragment(
-                    item.id
-                )
-            findNavController().navigate(action)
-        }
+        val action =
+            TransactionListHistoryFragmentDirections.actionTransactionListHistoryFragmentToTransactionDetailsFragment(
+                item.id
+            )
+        findNavController().navigate(action)
     }
 
     private fun setRecyclerListener() {
