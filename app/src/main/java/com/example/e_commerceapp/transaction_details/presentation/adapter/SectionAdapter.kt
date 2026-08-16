@@ -4,16 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.databinding.RowItemBinding
+import com.example.e_commerceapp.transaction_details.presentation.adapter.viewHolder.SectionViewHolder
 import com.example.e_commerceapp.transaction_details.presentation.model.RowsUiModel
 
-class SectionAdapter : ListAdapter<RowsUiModel, SectionAdapter.SectionViewHolder>(
+class SectionAdapter : ListAdapter<RowsUiModel, SectionViewHolder>(
     RowDiffUtil()
 ) {
-    class SectionViewHolder(val binding: RowItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int

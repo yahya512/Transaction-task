@@ -4,9 +4,10 @@ import com.example.e_commerceapp.transaction_details.domain.model.SupportDomainM
 import com.example.e_commerceapp.transaction_details.presentation.model.SupportUiModel
 
 object SupportUiMapper {
-    fun mapToUi(data: SupportDomainModel?): SupportUiModel {
+    fun mapToUi(data: SupportDomainModel): SupportUiModel {
         return SupportUiModel(
-            text = data?.text, action_label = data?.action_label
+            text = data.text,
+            actionLabel = data.actionLabel
         )
     }
 }

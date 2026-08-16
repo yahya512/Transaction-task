@@ -11,13 +11,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.databinding.FragmentTransactionListHistoryBinding
 import com.example.e_commerceapp.transaction_list.presentation.adapter.TransactionListAdapter
-import com.example.e_commerceapp.transaction_list.presentation.model.TransactionOnClick
-import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
-import com.example.e_commerceapp.transaction_list.presentation.model.UiState
+import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
+import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
+import com.example.e_commerceapp.transaction_list.presentation.models.UiState
 import com.example.e_commerceapp.transaction_list.presentation.viewmodel.TransactionListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,10 +24,7 @@ import kotlinx.coroutines.launch
 class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
     private lateinit var binding: FragmentTransactionListHistoryBinding
     private val viewModel: TransactionListViewModel by viewModels()
-
-    private val adapter by lazy {
-        TransactionListAdapter(this)
-    }
+    private lateinit var adapter: TransactionListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

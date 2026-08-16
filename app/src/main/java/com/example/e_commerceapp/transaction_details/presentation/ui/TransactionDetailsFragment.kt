@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.e_commerceapp.databinding.FragmentTransactionDetailsBinding
 import com.example.e_commerceapp.transaction_details.presentation.adapter.TransactionDetailsAdapter
 import com.example.e_commerceapp.transaction_details.presentation.model.SectionUiModel
+import com.example.e_commerceapp.transaction_details.presentation.model.TransactionDetailsUiModel
 import com.example.e_commerceapp.transaction_details.presentation.model.UiDetailsState
 import com.example.e_commerceapp.transaction_details.presentation.viewmodel.TransactionDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,7 @@ class TransactionDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.getTransactionById(args.id)
         getTransactionDetailsById()
-
+        setUpListeners()
     }
 
 
@@ -51,48 +52,17 @@ class TransactionDetailsFragment : Fragment() {
                 viewModel.stateDetailsFlow.collect {
                     when (it) {
                         UiDetailsState.Loading -> {
-                            binding.apply {
-                                groupOfSuccessfulState.isVisible = false
-                                backButton.setOnClickListener {
-                                    navigateToHome()
-                                }
-                            }
+                            binding.groupOfSuccessfulState.isVisible = false
                         }
 
                         is UiDetailsState.Error -> {
-                            binding.apply {
-                                progressBar.isVisible = false
-                                groupOfSuccessfulState.isVisible = false
-                                errorMessageTextView.isVisible = true
-                                errorMessageTextView.text = it.errorMessage
-                                backButton.setOnClickListener {
-                                    navigateToHome()
-                                }
-                            }
+                            handleErrorState(it.errorMessage)
                         }
 
                         is UiDetailsState.Success -> {
-                            binding.apply {
-                                progressBar.isVisible = false
-                                errorMessageTextView.isVisible = false
-                                groupOfSuccessfulState.isVisible = true
-                                successfulPaymentTextView.text = it.data.status_title
-                                paymentPrice.text = it.data.amount_label
-                                showTransactionDetails(it.data.sections ?: emptyList())
-                                problemTextView.text = it.data.support?.text
-                                supportRequest.text = it.data.support?.action_label
-                                backToHomeButton.setOnClickListener {
-                                    navigateToHome()
-                                }
-                                backButton.setOnClickListener {
-                                    navigateToHome()
-                                }
-                                shareButton.isVisible = it.data.shareable
-                            }
+                            handleSuccessState(it.data)
                         }
-
                     }
-
                 }
             }
         }
@@ -103,6 +73,38 @@ class TransactionDetailsFragment : Fragment() {
             recyclerviewTransactionDetailsOperations.adapter = adapter
         }
         adapter.submitList(transaction)
+    }
+
+    private fun setUpListeners() {
+        binding.backButton.setOnClickListener {
+            navigateToHome()
+        }
+        binding.backToHomeButton.setOnClickListener {
+            navigateToHome()
+        }
+    }
+
+    private fun handleSuccessState(data: TransactionDetailsUiModel) {
+        binding.apply {
+            progressBar.isVisible = false
+            errorMessageTextView.isVisible = false
+            groupOfSuccessfulState.isVisible = true
+            successfulPaymentTextView.text = data.statusTitle
+            paymentPrice.text = data.amountLabel
+            showTransactionDetails(data.sections ?: emptyList())
+            problemTextView.text = data.support?.text
+            supportRequest.text = data.support?.actionLabel
+            shareButton.isVisible = data.shareable
+        }
+    }
+
+    private fun handleErrorState(errorMessage: String) {
+        binding.apply {
+            progressBar.isVisible = false
+            groupOfSuccessfulState.isVisible = false
+            errorMessageTextView.isVisible = true
+            errorMessageTextView.text = errorMessage
+        }
     }
 
     private fun navigateToHome() {
