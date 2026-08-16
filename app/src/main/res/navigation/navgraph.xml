@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/transactionListHistoryFragment">
+
+    <fragment
+        android:id="@+id/transactionListHistoryFragment"
+        android:name="com.example.e_commerceapp.transaction_list.presentation.ui.TransactionListHistoryFragment"
+        android:label="fragment_transaction_list_history"
+        tools:layout="@layout/fragment_transaction_list_history" >
+        <action
+            android:id="@+id/action_transactionListHistoryFragment_to_transactionDetailsFragment"
+            app:destination="@id/transactionDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionDetailsFragment"
+        android:name="com.example.e_commerceapp.transaction_details.presentation.ui.TransactionDetailsFragment"
+        android:label="fragment_transaction_details"
+        tools:layout="@layout/fragment_transaction_details" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_transactionDetailsFragment_to_transactionListHistoryFragment"
+            app:destination="@id/transactionListHistoryFragment" />
+    </fragment>
+</navigation>

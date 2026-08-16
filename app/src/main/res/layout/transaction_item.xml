@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp">
@@ -10,14 +11,13 @@
         android:id="@+id/image_view_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="2dp"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4dp"
         android:scaleType="centerCrop"
         android:src="@drawable/vector19"
-        app:layout_constraintEnd_toStartOf="@id/name_of_transaction"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,9 +26,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15.5dp"
         android:layout_marginBottom="8dp"
-        android:paddingEnd="30dp"
+
         android:textColor="#5E6160"
         android:textSize="13sp"
         app:layout_constraintBottom_toTopOf="@id/name_of_transaction"
@@ -41,7 +41,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:paddingEnd="30dp"
+        android:layout_marginTop="4dp"
+
+        android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/image_view_card"
@@ -53,30 +55,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:text="@string/payment_price"
+        android:textColor="@color/black"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/phone_number"
-        tools:text="1,550 EGP" />
+        app:layout_constraintEnd_toEndOf="@id/transaction_status"
+        app:layout_constraintStart_toStartOf="@id/transaction_status"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/transaction_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp"
         android:background="@drawable/circular_status"
         android:paddingHorizontal="8dp"
-        android:paddingVertical="0.5dp"
-        android:textColor="#F17221"
+        android:paddingVertical="3.5dp"
+        android:text="@string/pending"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/orange"
         android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/cost_of_transaction"
-        app:layout_constraintStart_toStartOf="@id/cost_of_transaction"
-        app:layout_constraintTop_toBottomOf="@+id/cost_of_transaction"
-        tools:text="Pending" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cost_of_transaction" />
 
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="#F6F6F6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transaction_status" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

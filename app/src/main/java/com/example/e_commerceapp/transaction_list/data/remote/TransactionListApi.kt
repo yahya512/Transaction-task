@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface TransactionListApi {
     @GET("test/transactions?layout=grouped")
-    suspend fun getTransactionList(): BaseResponse<TransactionsList?>
+    suspend fun getTransactionList(): BaseResponse<TransactionsList>
 }

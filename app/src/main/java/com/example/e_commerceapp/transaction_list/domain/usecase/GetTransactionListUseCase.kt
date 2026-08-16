@@ -6,7 +6,7 @@ import com.example.e_commerceapp.transaction_list.domain.repository.TransactionL
 import javax.inject.Inject
 
 class GetTransactionListUseCase @Inject constructor(private val repository: TransactionListRepository) {
-    suspend operator fun invoke(): ApiResultStatus<List<TransactionDomainModel>?> {
+    suspend operator fun invoke(): ApiResultStatus<List<TransactionDomainModel>> {
         return repository.getTransactionList()
     }
 }
