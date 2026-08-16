@@ -55,9 +55,10 @@ object MyAppModule {
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
+
         val retrofit = Retrofit
             .Builder()
-            .baseUrl("https://skyblue-dogfish-178203.hostingersite.com/api/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
