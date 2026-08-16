@@ -9,5 +9,5 @@ data class TransactionDetailsDto(
     val amount_label: String,
     val shareable: Boolean,
     val sections: List<SectionDataModel>,
-    val support: SupportDataModel
+    val support: SupportDto
 )
