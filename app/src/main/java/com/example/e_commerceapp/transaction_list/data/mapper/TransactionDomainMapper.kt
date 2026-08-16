@@ -12,6 +12,7 @@ object TransactionDomainMapper {
             title = data.title,
             icon = data.icon,
             amountLabel = data.amountLabel,
+            status = data.status,
             statusLabel = data.statusLabel,
             dataLabel = data.dateLabel,
             type = data.type

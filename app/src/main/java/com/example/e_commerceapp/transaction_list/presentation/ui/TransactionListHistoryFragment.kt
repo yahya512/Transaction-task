@@ -11,11 +11,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.databinding.FragmentTransactionListHistoryBinding
 import com.example.e_commerceapp.transaction_list.presentation.adapter.TransactionListAdapter
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
-import com.example.e_commerceapp.transaction_list.presentation.models.UiState
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionOnClick
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
+import com.example.e_commerceapp.transaction_list.presentation.model.UiState
 import com.example.e_commerceapp.transaction_list.presentation.viewmodel.TransactionListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,7 +26,10 @@ import kotlinx.coroutines.launch
 class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
     private lateinit var binding: FragmentTransactionListHistoryBinding
     private val viewModel: TransactionListViewModel by viewModels()
-    private lateinit var adapter: TransactionListAdapter
+
+    private val adapter by lazy {
+        TransactionListAdapter(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -41,7 +46,7 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
         // show products
         viewModel.loadTransactions()
         // using swipe Refresh
-        binding.swipeToRefresh.setOnRefreshListener {
+        binding.swipeT0Refresh.setOnRefreshListener {
             viewModel.resetPagination()
             viewModel.loadTransactions()
         }
@@ -57,40 +62,40 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
                         when (it) {
                             is UiState.Loading -> {
                                 binding.apply {
-                                    progressPar.isVisible = true
-                                    swipeToRefresh.isRefreshing = false
+                                    progressBar.isVisible = true
+                                    swipeT0Refresh.isRefreshing = false
                                     transactionListRecView.isVisible = false
-                                    errorMessageTextView.isVisible = false
+                                    errorMessageText.isVisible = false
                                 }
                             }
 
                             is UiState.Success -> {
 
                                 binding.apply {
-                                    swipeToRefresh.isRefreshing = false
-                                    progressPar.isVisible = false
+                                    swipeT0Refresh.isRefreshing = false
+                                    progressBar.isVisible = false
                                     transactionListRecView.isVisible = true
-                                    errorMessageTextView.isVisible = false
+                                    errorMessageText.isVisible = false
                                 }
                                 showTransactionsList(it.transactions ?: emptyList())
                             }
 
                             is UiState.Error -> {
                                 binding.apply {
-                                    progressPar.isVisible = false
-                                    swipeToRefresh.isRefreshing = false
+                                    progressBar.isVisible = false
+                                    swipeT0Refresh.isRefreshing = false
                                     transactionListRecView.isVisible = false
-                                    errorMessageTextView.isVisible = true
-                                    errorMessageTextView.text = it.errorMessage
+                                    errorMessageText.isVisible = true
+                                    errorMessageText.text = it.errorMessage
                                 }
                             }
 
                             is UiState.LoadingPagination -> {
                                 binding.apply {
-                                    swipeToRefresh.isRefreshing = false
-                                    progressPar.isVisible = false
+                                    swipeT0Refresh.isRefreshing = false
+                                    progressBar.isVisible = false
                                     transactionListRecView.isVisible = true
-                                    errorMessageTextView.isVisible = false
+                                    errorMessageText.isVisible = false
                                 }
                             }
                         }

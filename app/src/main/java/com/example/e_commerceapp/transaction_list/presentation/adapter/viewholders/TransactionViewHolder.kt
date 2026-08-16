@@ -1,14 +1,13 @@
 package com.example.e_commerceapp.transaction_list.presentation.adapter.viewholders
 
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.e_commerceapp.R
 import com.example.e_commerceapp.databinding.TransactionItemBinding
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionOnClick
-import com.example.e_commerceapp.transaction_list.presentation.models.TransactionUiModule
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionOnClick
+import com.example.e_commerceapp.transaction_list.presentation.model.TransactionUiModel
 
 class TransactionViewHolder(
     val binding: TransactionItemBinding
