@@ -16,11 +16,9 @@ import com.example.e_commerceapp.transaction_list.presentation.models.ViewHolder
 const val HEADER = 0
 const val TRANSACTION = 1
 
-
-class TransactionListAdapter(val listener: TransactionOnClick) :
-    ListAdapter<TransactionUiModule, RecyclerView.ViewHolder>(
-        TransactionsDiffUtil()
-    ) {
+class TransactionListAdapter(
+    val listener: TransactionOnClick
+) : ListAdapter<TransactionUiModule, RecyclerView.ViewHolder>(TransactionsDiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
         return if (getItem(position).type == ViewHolderType.TRANSACTIONS) {
@@ -64,8 +62,12 @@ class TransactionListAdapter(val listener: TransactionOnClick) :
 
             is TransactionViewHolder -> {
                 holder.bindTransaction(transactionItem, listener)
-                holder.binding.viewLine.isVisible = (position != itemCount - 1)
+                holder.binding.viewLine.isVisible = isLastItem(position, itemCount)
             }
         }
+    }
+
+    private fun isLastItem(position: Int, itemCount: Int): Boolean {
+        return position != itemCount - 1
     }
 }

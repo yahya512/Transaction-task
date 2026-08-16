@@ -39,7 +39,7 @@ kotlin {
     jvmToolchain(11)
 }
 dependencies {
-    val navVersion = "2.9.8"
+
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
@@ -48,15 +48,28 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
-    implementation("androidx.navigation:navigation-fragment:${navVersion}")
-    implementation("androidx.navigation:navigation-ui:${navVersion}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    //Navigation
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    //Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    //Swipe to refresh
+    implementation(libs.androidx.swiperefreshlayout)
+    //Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    implementation("com.squareup.retrofit2:retrofit:3.0.0")
-    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation("com.github.bumptech.glide:glide:5.0.5")
+    //Retrofit
+    implementation(libs.retrofit)
+    //Geson Convertor
+    implementation(libs.retrofit2.converter.gson)
+    //OkHttp
+    implementation(libs.okhttp)
+    //Interceptor
+    implementation(libs.logging.interceptor)
+    //Glide
+    implementation(libs.glide)
+    //Chucker
+    debugImplementation(libs.library)
+    releaseImplementation(libs.chucker.library.no.op)
+
 }
