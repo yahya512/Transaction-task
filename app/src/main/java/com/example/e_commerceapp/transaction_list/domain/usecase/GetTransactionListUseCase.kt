@@ -9,7 +9,7 @@ class GetTransactionListUseCase @Inject constructor(private val repository: Tran
     suspend operator fun invoke(
         page: Int,
         limit: Int
-    ): ApiResultStatus<BaseDomainModel?> {
+    ): ApiResultStatus<BaseDomainModel> {
         return repository.getTransactionList(page = page, limit = limit)
     }
 }
