@@ -1,9 +1,14 @@
 package com.example.e_commerceapp.transaction_details.presentation.ui
 
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.FileProvider
+import androidx.core.graphics.createBitmap
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,6 +24,8 @@ import com.example.e_commerceapp.transaction_details.presentation.model.UiDetail
 import com.example.e_commerceapp.transaction_details.presentation.viewmodel.TransactionDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class TransactionDetailsFragment : Fragment() {
@@ -100,7 +107,52 @@ class TransactionDetailsFragment : Fragment() {
         binding.backToHomeButton.setOnClickListener {
             navigateToHome()
         }
-        binding.shareButton.setOnClickListener { }
+        binding.shareButton.setOnClickListener {
+            val viewToShare = binding.transactionSharedContainer.bitMap()
+            val file = saveImageToCache(viewToShare)
+            val uri = FileProvider.getUriForFile(
+                requireContext(),
+                "${requireContext().packageName}.fileProvider",
+                file
+            )
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "image/png"
+                putExtra(
+                    Intent.EXTRA_STREAM,
+                    uri
+                )
+                addFlags(
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+            startActivity(
+                Intent.createChooser(
+                    shareIntent,
+                    "Share transaction"
+                )
+            )
+        }
+    }
+
+    // Create a BitMap
+    private fun View.bitMap(): Bitmap {
+        val bitmap = createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        draw(canvas)
+        return bitmap
+    }
+
+    //Save the image into cache
+    private fun saveImageToCache(bitmap: Bitmap): File {
+        val file = File(requireContext().cacheDir, "transaction_share.png")
+        FileOutputStream(file).use { outputStream ->
+            bitmap.compress(
+                Bitmap.CompressFormat.PNG,
+                90,
+                outputStream
+            )
+        }
+        return file
     }
 
     private fun navigateToHome() {
