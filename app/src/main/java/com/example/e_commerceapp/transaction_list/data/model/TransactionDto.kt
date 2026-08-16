@@ -2,13 +2,13 @@ package com.example.e_commerceapp.transaction_list.data.model
 
 data class TransactionDto(
     val id: Int?,
-    val fees: Int?,
+    val fees: Double?,
+    val amount: Double?,
     val reference: String?,
     val receipt_number: String?,
     val service: String?,
     val title: String?,
     val icon: String?,
-    val amount: String?,
     val currency: String?,
     val amount_label: String?,
     val status: String?,
@@ -19,4 +19,5 @@ data class TransactionDto(
     val date_label: String?,
     val datetime_label: String?,
     val created_at: String?,
+    val type: String?
 )

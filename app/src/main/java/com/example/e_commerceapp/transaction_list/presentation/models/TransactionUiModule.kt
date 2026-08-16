@@ -1,6 +1,6 @@
-package com.example.e_commerceapp.transaction_list.domain.model
+package com.example.e_commerceapp.transaction_list.presentation.models
 
-data class TransactionDomainModel(
+data class TransactionUiModule(
     val id: Int?,
     val reference: String?,
     val title: String?,
@@ -8,5 +8,5 @@ data class TransactionDomainModel(
     val amount_label: String?,
     val status_label: String?,
     val data_label: String?,
-    val type: String?
+    val type: ViewHolderType
 )
