@@ -111,11 +111,13 @@ class TransactionListHistoryFragment : Fragment(), TransactionOnClick {
     }
 
     override fun onClick(item: TransactionUiModel) {
-        val action =
-            TransactionListHistoryFragmentDirections.actionTransactionListHistoryFragmentToTransactionDetailsFragment(
-                item.id
-            )
-        findNavController().navigate(action)
+        item.id?.let {
+            val action =
+                TransactionListHistoryFragmentDirections.actionTransactionListHistoryFragmentToTransactionDetailsFragment(
+                    item.id
+                )
+            findNavController().navigate(action)
+        }
     }
 
     private fun setRecyclerListener() {

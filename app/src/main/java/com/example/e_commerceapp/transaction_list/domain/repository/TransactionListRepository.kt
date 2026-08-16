@@ -7,5 +7,5 @@ interface TransactionListRepository {
     suspend fun getTransactionList(
         page: Int,
         limit: Int
-    ): ApiResultStatus<BaseDomainModel?>
+    ): ApiResultStatus<BaseDomainModel>
 }

@@ -60,11 +60,11 @@ class TransactionListViewModel @Inject constructor(private val getAllTransaction
 
                 is ApiResultStatus.Success -> {
                     val listOfTransactionUi =
-                        TransactionListUiMapper.matToUi(result.data?.transactions)
+                        TransactionListUiMapper.matToUi(result.data.transactions)
                     isLoading = false // allow for send request again
                     isInitialLoad = false
                     // get the current page from backend => single source  of truth
-                    val paginationUiModel = PaginationUiMapper.mapToUi(result.data?.pagination)
+                    val paginationUiModel = PaginationUiMapper.mapToUi(result.data.pagination)
                     currentPage = paginationUiModel.currentPage ?: currentPage
                     //increment current page for the next request
                     currentPage++

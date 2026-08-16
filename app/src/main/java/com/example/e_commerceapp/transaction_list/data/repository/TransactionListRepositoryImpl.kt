@@ -13,7 +13,7 @@ class TransactionListRepositoryImpl @Inject constructor(private val apiServices:
     override suspend fun getTransactionList(
         page: Int,
         limit: Int
-    ): ApiResultStatus<BaseDomainModel?> {
+    ): ApiResultStatus<BaseDomainModel> {
         val apiStatus =
             safeApiCall { apiServices.getTransactionList(pageNumber = page, limit = limit) }
         return when (apiStatus) {
