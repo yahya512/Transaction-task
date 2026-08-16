@@ -6,8 +6,10 @@ import com.example.e_commerceapp.transaction_details.presentation.model.RowsUiMo
 object RowsUiMapper {
     fun mapToUi(data: RowsDomainModel): RowsUiModel {
         return RowsUiModel(
+            key = data.key,
             label = data.label,
-            value = data.value
-        )
+            value = data.value,
+
+            )
     }
 }
