@@ -4,5 +4,5 @@ import com.example.e_commerceapp.transaction_details.domain.model.TransactionDet
 import com.example.e_commerceapp.transaction_list.domain.model.ApiResultStatus
 
 interface TransactionDetailsRepository {
-    suspend fun getTransactionById(id: Int): ApiResultStatus<TransactionDetailsDomainModel?>
+    suspend fun getTransactionById(id: Int): ApiResultStatus<TransactionDetailsDomainModel>
 }
