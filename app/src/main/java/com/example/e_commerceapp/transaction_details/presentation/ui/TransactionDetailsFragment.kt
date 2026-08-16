@@ -3,6 +3,7 @@ package com.example.e_commerceapp.transaction_details.presentation.ui
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +61,7 @@ class TransactionDetailsFragment : Fragment() {
                         UiDetailsState.Loading -> {
                             binding.apply {
                                 groupOfSuccessfulState.isVisible = false
+                                errorMessageTextView.isVisible = false
                             }
                         }
 
@@ -108,29 +110,7 @@ class TransactionDetailsFragment : Fragment() {
             navigateToHome()
         }
         binding.shareButton.setOnClickListener {
-            val viewToShare = binding.transactionSharedContainer.bitMap()
-            val file = saveImageToCache(viewToShare)
-            val uri = FileProvider.getUriForFile(
-                requireContext(),
-                "${requireContext().packageName}.fileProvider",
-                file
-            )
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "image/png"
-                putExtra(
-                    Intent.EXTRA_STREAM,
-                    uri
-                )
-                addFlags(
-                    Intent.FLAG_GRANT_READ_URI_PERMISSION
-                )
-            }
-            startActivity(
-                Intent.createChooser(
-                    shareIntent,
-                    "Share transaction"
-                )
-            )
+            sharingTransactionImage()
         }
     }
 
@@ -143,7 +123,7 @@ class TransactionDetailsFragment : Fragment() {
     }
 
     //Save the image into cache
-    private fun saveImageToCache(bitmap: Bitmap): File {
+    private fun saveBitmapToCache(bitmap: Bitmap): File {
         val file = File(requireContext().cacheDir, "transaction_share.png")
         FileOutputStream(file).use { outputStream ->
             bitmap.compress(
@@ -153,6 +133,43 @@ class TransactionDetailsFragment : Fragment() {
             )
         }
         return file
+    }
+
+    // transfer file into content URI
+    private fun fileToContentUri(file: File): Uri {
+        val uri = FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().packageName}.fileProvider",
+            file
+        )
+        return uri
+    }
+
+    // share intent
+    private fun shareImage(uri: Uri): Intent {
+        return Intent(Intent.ACTION_SEND).apply {
+            type = "image/png"
+            putExtra(
+                Intent.EXTRA_STREAM,
+                uri
+            )
+            addFlags(
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+        }
+    }
+
+    private fun sharingTransactionImage() {
+        val viewToShare = binding.transactionSharedContainer.bitMap()
+        val file = saveBitmapToCache(viewToShare)
+        val uri = fileToContentUri(file)
+        val shareIntent = shareImage(uri)
+        startActivity(
+            Intent.createChooser(
+                shareIntent,
+                "Share transaction"
+            )
+        )
     }
 
     private fun navigateToHome() {
