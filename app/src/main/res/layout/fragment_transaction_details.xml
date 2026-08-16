@@ -10,8 +10,10 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/transaction_sharedContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F6F6F6">
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/group_ofSuccessfulState"
