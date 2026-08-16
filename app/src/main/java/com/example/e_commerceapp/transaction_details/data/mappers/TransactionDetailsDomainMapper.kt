@@ -9,10 +9,10 @@ object TransactionDetailsDomainMapper {
     fun mapToDomain(data: TransactionDetailsDto): TransactionDetailsDomainModel {
         return TransactionDetailsDomainModel(
             id = data.id,
-            statusLabel = data.status_label,
-            statusTitle = data.status_title,
-            amountLabel = data.amount_label,
-            shareable = data.shareable ,
+            statusLabel = data.statusLabel,
+            statusTitle = data.statusTitle,
+            amountLabel = data.amountLabel,
+            shareable = data.shareable,
             support = SupportDomainMapper.mapToDomain(data.support),
             sections = SectionListDomainMapper.mapListToDomain(data.sections)
         )

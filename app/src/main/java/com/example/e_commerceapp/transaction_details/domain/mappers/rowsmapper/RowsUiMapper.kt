@@ -8,7 +8,8 @@ object RowsUiMapper {
         return RowsUiModel(
             key = data.key,
             label = data.label,
-            value = data.value
-        )
+            value = data.value,
+
+            )
     }
 }
