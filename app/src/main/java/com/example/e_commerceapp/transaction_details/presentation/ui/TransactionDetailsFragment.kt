@@ -67,26 +67,11 @@ class TransactionDetailsFragment : Fragment() {
                         }
 
                         is UiDetailsState.Error -> {
-                            binding.apply {
-                                progressBar.isVisible = false
-                                groupOfSuccessfulState.isVisible = false
-                                errorMessageTextView.isVisible = true
-                                errorMessageTextView.text = it.errorMessage
-                            }
+                            handleErrorState(it.errorMessage)
                         }
 
                         is UiDetailsState.Success -> {
-                            binding.apply {
-                                progressBar.isVisible = false
-                                errorMessageTextView.isVisible = false
-                                groupOfSuccessfulState.isVisible = true
-                                successfulPaymentTextView.text = it.data.status_title
-                                paymentPrice.text = it.data.amount_label
-                                showTransactionDetails(it.data.sections ?: emptyList())
-                                problemTextView.text = it.data.support?.text
-                                supportRequest.text = it.data.support?.action_label
-                                shareButton.isVisible = it.data.shareable
-                            }
+                            handleSuccessState(it.data)
                         }
                     }
                 }
@@ -169,6 +154,29 @@ class TransactionDetailsFragment : Fragment() {
                 "Share transaction"
             )
         )
+    }
+
+    private fun handleSuccessState(data: TransactionDetailsUiModel) {
+        binding.apply {
+            progressBar.isVisible = false
+            errorMessageTextView.isVisible = false
+            groupOfSuccessfulState.isVisible = true
+            successfulPaymentTextView.text = data.statusTitle
+            paymentPrice.text = data.amountLabel
+            showTransactionDetails(data.sections ?: emptyList())
+            problemTextView.text = data.support?.text
+            supportRequest.text = data.support?.actionLabel
+            shareButton.isVisible = data.shareable
+        }
+    }
+
+    private fun handleErrorState(errorMessage: String) {
+        binding.apply {
+            progressBar.isVisible = false
+            groupOfSuccessfulState.isVisible = false
+            errorMessageTextView.isVisible = true
+            errorMessageTextView.text = errorMessage
+        }
     }
 
     private fun navigateToHome() {
