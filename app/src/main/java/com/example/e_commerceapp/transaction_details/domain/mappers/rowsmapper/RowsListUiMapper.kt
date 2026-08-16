@@ -4,11 +4,9 @@ import com.example.e_commerceapp.transaction_details.domain.model.RowsDomainMode
 import com.example.e_commerceapp.transaction_details.presentation.model.RowsUiModel
 
 object RowsListUiMapper {
-    fun mapListToUi(listRows: List<RowsDomainModel>?): List<RowsUiModel>? {
-        return listRows?.let {
-            listRows.map {
-                RowsUiMapper.mapToUi(it)
-            }
+    fun mapListToUi(listRows: List<RowsDomainModel>): List<RowsUiModel> {
+        return listRows.map {
+            RowsUiMapper.mapToUi(it)
         }
     }
 }

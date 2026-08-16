@@ -5,11 +5,11 @@ import com.example.e_commerceapp.transaction_details.data.model.SectionDataModel
 import com.example.e_commerceapp.transaction_details.domain.model.SectionDomainModel
 
 object SectionDomainMapper {
-    fun mapToDomain(data: SectionDataModel?): SectionDomainModel {
+    fun mapToDomain(data: SectionDataModel): SectionDomainModel {
         return SectionDomainModel(
-            key = data?.key,
-            title = data?.title,
-            rows = RowsListDomainMapper.mapListToDomain(data?.rows)
+            key = data.key,
+            title = data.title,
+            rows = RowsListDomainMapper.mapListToDomain(data.rows)
         )
     }
 }

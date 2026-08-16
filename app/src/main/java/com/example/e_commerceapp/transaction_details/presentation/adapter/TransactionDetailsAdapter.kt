@@ -3,20 +3,15 @@ package com.example.e_commerceapp.transaction_details.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerceapp.databinding.SectionItemBinding
+import com.example.e_commerceapp.transaction_details.presentation.adapter.viewHolder.TransactionDetailsViewHolder
 import com.example.e_commerceapp.transaction_details.presentation.model.SectionUiModel
 
 class TransactionDetailsAdapter :
-    ListAdapter<SectionUiModel, TransactionDetailsAdapter.TransactionDetailsViewHolder>(
+    ListAdapter<SectionUiModel, TransactionDetailsViewHolder>(
         SectionDiffUtil()
     ) {
-
-    class TransactionDetailsViewHolder(val binding: SectionItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-    }
-
+    
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): TransactionDetailsViewHolder {

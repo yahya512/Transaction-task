@@ -9,5 +9,5 @@ interface TransactionDetailsApi {
     @GET(GET_TRANSACTION_DETAILS_URL)
     suspend fun getTransactionDetailsByID(
         @Path("id") id: Int
-    ): BaseResponse<TransactionDetailsResponse?>
+    ): BaseResponse<TransactionDetailsResponse>
 }

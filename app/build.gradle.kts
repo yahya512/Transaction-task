@@ -26,6 +26,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\" https://skyblue-dogfish-178203.hostingersite.com/api/\""
+            )
+        }
         release {
             isMinifyEnabled = false
         }

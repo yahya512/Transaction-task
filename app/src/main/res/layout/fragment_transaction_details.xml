@@ -16,7 +16,7 @@
         android:background="#F6F6F6">
 
         <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_of_successful_state"
+            android:id="@+id/group_ofSuccessfulState"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"

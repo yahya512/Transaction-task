@@ -6,15 +6,15 @@ import com.example.e_commerceapp.transaction_details.data.model.TransactionDetai
 import com.example.e_commerceapp.transaction_details.domain.model.TransactionDetailsDomainModel
 
 object TransactionDetailsDomainMapper {
-    fun mapToDomain(data: TransactionDetailsDto?): TransactionDetailsDomainModel {
+    fun mapToDomain(data: TransactionDetailsDto): TransactionDetailsDomainModel {
         return TransactionDetailsDomainModel(
-            id = data?.id,
-            status_label = data?.status_label,
-            status_title = data?.status_title,
-            amount_label = data?.amount_label,
-            shareable = data?.shareable ?: false,
-            support = SupportDomainMapper.mapToDomain(data?.support),
-            sections = SectionListDomainMapper.mapListToDomain(data?.sections)
+            id = data.id,
+            statusLabel = data.statusLabel,
+            statusTitle = data.statusTitle,
+            amountLabel = data.amountLabel,
+            shareable = data.shareable,
+            support = SupportDomainMapper.mapToDomain(data.support),
+            sections = SectionListDomainMapper.mapListToDomain(data.sections)
         )
     }
 }

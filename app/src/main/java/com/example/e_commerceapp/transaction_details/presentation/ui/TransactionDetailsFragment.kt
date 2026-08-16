@@ -21,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.e_commerceapp.databinding.FragmentTransactionDetailsBinding
 import com.example.e_commerceapp.transaction_details.presentation.adapter.TransactionDetailsAdapter
 import com.example.e_commerceapp.transaction_details.presentation.model.SectionUiModel
+import com.example.e_commerceapp.transaction_details.presentation.model.TransactionDetailsUiModel
 import com.example.e_commerceapp.transaction_details.presentation.model.UiDetailsState
 import com.example.e_commerceapp.transaction_details.presentation.viewmodel.TransactionDetailsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,9 +88,7 @@ class TransactionDetailsFragment : Fragment() {
                                 shareButton.isVisible = it.data.shareable
                             }
                         }
-
                     }
-
                 }
             }
         }
