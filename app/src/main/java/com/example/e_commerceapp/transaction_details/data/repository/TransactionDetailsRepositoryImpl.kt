@@ -10,13 +10,13 @@ import javax.inject.Inject
 
 class TransactionDetailsRepositoryImpl @Inject constructor(private val apiService: TransactionDetailsApi) :
     TransactionDetailsRepository {
-    override suspend fun getTransactionById(id: Int): ApiResultStatus<TransactionDetailsDomainModel?> {
+    override suspend fun getTransactionById(id: Int): ApiResultStatus<TransactionDetailsDomainModel> {
         val result = safeApiCall { apiService.getTransactionDetailsByID(id) }
 
         return when (result) {
             is ApiResultStatus.Success -> {
                 val transactionDetailsDomain =
-                    TransactionDetailsDomainMapper.mapToDomain(result.data?.transaction)
+                    TransactionDetailsDomainMapper.mapToDomain(result.data.transaction)
                 ApiResultStatus.Success(transactionDetailsDomain)
             }
             is ApiResultStatus.Error -> {

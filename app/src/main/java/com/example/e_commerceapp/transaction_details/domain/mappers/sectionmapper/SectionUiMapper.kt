@@ -8,6 +8,7 @@ object SectionUiMapper {
 
     fun mapToUi(sectionItem: SectionDomainModel): SectionUiModel {
         return SectionUiModel(
+            key = sectionItem.key,
             title = sectionItem.title,
             rows = RowsListUiMapper.mapListToUi(sectionItem.rows)
         )

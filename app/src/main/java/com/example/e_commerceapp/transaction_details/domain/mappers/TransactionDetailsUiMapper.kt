@@ -9,9 +9,9 @@ object TransactionDetailsUiMapper {
     fun mapToUi(data: TransactionDetailsDomainModel): TransactionDetailsUiModel {
         return TransactionDetailsUiModel(
             id = data.id,
-            status_label = data.statusLabel,
-            amount_label = data.amountLabel,
-            status_title = data.statusTitle,
+            statusLabel = data.statusLabel,
+            amountLabel = data.amountLabel,
+            statusTitle = data.statusTitle,
             shareable = data.shareable,
             support = SupportUiMapper.mapToUi(data.support),
             sections = SectionListUiMapper.mapListToUi(data.sections)

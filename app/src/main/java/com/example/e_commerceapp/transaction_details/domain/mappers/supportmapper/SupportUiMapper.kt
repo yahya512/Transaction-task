@@ -7,7 +7,7 @@ object SupportUiMapper {
     fun mapToUi(data: SupportDomainModel): SupportUiModel {
         return SupportUiModel(
             text = data.text,
-            action_label = data.actionLabel
+            actionLabel = data.actionLabel
         )
     }
 }
