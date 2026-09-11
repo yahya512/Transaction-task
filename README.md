@@ -23,7 +23,7 @@ The transaction history is implemented using **Pagination**, so transactions are
 
 This approach keeps the UI responsive and avoids loading a large amount of data at once.
 
-![Transaction History]([screenshots/transaction_history.png](https://github.com/yahya512/Transaction-task/blob/f6fe88923c4edf3d96411be55d746223fec115a5/app/src/main/java/com/example/e_commerceapp/screenshots/Screenshot_20260901_210431.png))
+![Transaction History](https://github.com/yahya512/Transaction-task/blob/f6fe88923c4edf3d96411be55d746223fec115a5/app/src/main/java/com/example/e_commerceapp/screenshots/Screenshot_20260901_210431.png)
 
 ---
 
@@ -33,7 +33,7 @@ By selecting a transaction from the history, the user can navigate to the **Tran
 
 This screen displays the complete information related to the selected transaction in a clear and organized layout.
 
-![Transaction Details]([screenshots/transaction_details.png](https://github.com/yahya512/Transaction-task/blob/f6fe88923c4edf3d96411be55d746223fec115a5/app/src/main/java/com/example/e_commerceapp/screenshots/Screenshot_20260901_210440.png))
+![Transaction Details](https://github.com/yahya512/Transaction-task/blob/f6fe88923c4edf3d96411be55d746223fec115a5/app/src/main/java/com/example/e_commerceapp/screenshots/Screenshot_20260901_210440.png)
 
 ---
 
