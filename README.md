@@ -105,6 +105,7 @@ The UI state is handled using **StateFlow**, allowing the UI to react to changes
 * **Hilt**
 * **StateFlow**
 * **Coroutines**
+* **Navigation Component**
 * **RecyclerView**
 * **Pagination**
 * **Git & GitHub**
